@@ -1,0 +1,9 @@
+{
+  "name": "quixe",
+  "scripts": {
+    "build-zvm": "browserify src/ifvms.js/src/zvm.js --standalone ZVM > lib/zvm.debug.js"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0"
+  }
+}
