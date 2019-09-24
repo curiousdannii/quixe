@@ -417,7 +417,15 @@ var proto_map = {
 // 366 (0x16E): date_to_simple_time_utc - 3>+[8IsIsIsIsIsIsIsIs]Iu:Is
 366 : new FuncSpec(366, "date_to_simple_time_utc", new Prototype([new ArgRef(new ArgStruct(new Prototype([arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed], null)), true, false, true), arg_int_unsigned], new ArgRef(arg_int_signed, false, true, true))),
 // 367 (0x16F): date_to_simple_time_local - 3>+[8IsIsIsIsIsIsIsIs]Iu:Is
-367 : new FuncSpec(367, "date_to_simple_time_local", new Prototype([new ArgRef(new ArgStruct(new Prototype([arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed], null)), true, false, true), arg_int_unsigned], new ArgRef(arg_int_signed, false, true, true)))
+367 : new FuncSpec(367, "date_to_simple_time_local", new Prototype([new ArgRef(new ArgStruct(new Prototype([arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed, arg_int_signed], null)), true, false, true), arg_int_unsigned], new ArgRef(arg_int_signed, false, true, true))),
+// 4352 (0x1100): garglk_set_zcolors - 2IuIu:
+4352 : new FuncSpec(4352, "garglk_set_zcolors", new Prototype([arg_int_unsigned, arg_int_unsigned], null)),
+// 4353 (0x1101): garglk_set_zcolors_stream - 3QbIuIu:
+4353 : new FuncSpec(4353, "garglk_set_zcolors_stream", new Prototype([arg_class_stream, arg_int_unsigned, arg_int_unsigned], null)),
+// 4354 (0x1102): garglk_set_reversevideo - 1Iu:
+4354 : new FuncSpec(4354, "garglk_set_reversevideo", new Prototype([arg_int_unsigned], null)),
+// 4355 (0x1103): garglk_set_reversevideo_stream - 2QbIu:
+4355 : new FuncSpec(4355, "garglk_set_reversevideo_stream", new Prototype([arg_class_stream, arg_int_unsigned], null)),
 };
 // End of auto-generated table.
 
@@ -670,7 +678,7 @@ function build_function(func) {
     else {
         retval = '';
     }
-    out.push(retval + 'Glk.glk_' + func.name + '(' + argjoin.join(', ') + ');');
+    out.push(retval + ('Glk.glk_' + func.name).replace('glk_gar', 'gar') + '(' + argjoin.join(', ') + ');');
 
     if (mayblock) {
         /* If the call blocks, we need to stash away the arguments and
